@@ -1,4 +1,6 @@
-function criarProduto(id, nome, qtd){
+var produtos = []
+
+function criarProduto(id, nome, qtd) {
     let p = {
         id: id,
         nome: nome,
@@ -7,31 +9,34 @@ function criarProduto(id, nome, qtd){
     return p;
 }
 
-function adcionarProduto(p){
+function adcionarProduto(p) {
     produtos.push(p);
 }
 
-function listarProdutos(){
+function listarProdutos() {
     return produtos;
 }
 
-function removerProduto(id){
+function removerProduto(id) {
     produtos = produtos.filter((p) => {
         return p.id != id
     });
 }
 
-function editarProduto(id, qtd){
-    produtos = produtos.filter((id) => {
-        atualizar = qtd;
-        return p.qtd = atualizar
-    })
+function editarProduto(id, qtd, p) {
+    const produto = p.find(produto => produto.id === id);
+    if (produto) {
+        p.qtd = parseInt(qtd);
+        res.send('Quantidade do produto atualizada.');
+    } else {
+        res.send('Produto não encontrado.');
+    }
 }
 
 module.exports = {
     criarProduto,
     adcionarProduto,
     listarProdutos,
-    removerProduto, 
+    removerProduto,
     editarProduto
 }
